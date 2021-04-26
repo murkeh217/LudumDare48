@@ -1,0 +1,47 @@
+﻿/* @Author: Gkxd
+ * 
+ * A wrapper for attaching information to Audio Sources and controlling music loops
+ * 
+ * */
+
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Audio;
+
+public class MusicWrapper : MonoBehaviour
+{
+    public int BPM;
+    public float loopLength;
+    public float loopThreshold;
+    private AudioSource audioSource;
+    private AudioMixer audioMixer;
+    public AudioClip audioClip;
+    
+
+
+    public void Start()
+    {
+        if (gameObject.tag != "Rhythmify_Music")
+        {
+            Debug.LogError("GameObjects with a MusicWrapper component must be tagged \"Rhythmify_Music\".");
+            Debug.Break();
+        }
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioClip = audioSource.clip;
+        //audioSource.outputAudioMixerGroup.audioMixer.SetFloat("Octave", 1f);
+        //audioSource.outputAudioMixerGroup.audioMixer.SetFloat("Pitch", 100f);
+        audioSource.Play();
+    }
+
+    public void Update()
+    {/*
+        if (loopLength > 0 && loopThreshold > 0)
+        {
+            if (audioSource.timeSamples > loopThreshold * audioClip.frequency)
+            {
+                audioSource.timeSamples -= Mathf.RoundToInt(loopLength * audioClip.frequency);
+            }
+        }*/
+    }
+}
